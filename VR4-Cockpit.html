@@ -214,12 +214,14 @@ tr:hover td{background:var(--surface-2)}
 .search{margin-bottom:14px}
 .filterow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
 .flag-amazon{font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px;background:#fff7ed;color:#c2410c}
+.greetbar{display:none}
 
 @media(max-width:640px){
   .wrap{padding:18px 12px 80px}
   .kpi .big{font-size:30px}
   .brandtxt h1{font-size:19px}
   .greet{display:none}
+  .greetbar{display:block;font-size:16px;font-weight:700;color:var(--navy);margin:0 0 16px;padding:13px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);box-shadow:var(--shadow)}
 }
 </style>
 </head>
@@ -247,6 +249,8 @@ tr:hover td{background:var(--surface-2)}
 </header>
 
 <main class="wrap">
+
+  <div class="greetbar" id="greetbar"></div>
 
   <!-- ============ DASHBOARD ============ -->
   <section class="view active" id="dash">
@@ -550,6 +554,7 @@ document.getElementById('tabs').addEventListener('click',e=>{
 function renderDash(){
   const now=new Date(),cw=isoWeek(now),cy=isoYear(now);
   document.getElementById('greet').innerHTML=`Hallo <b>${CFG.name||'Team'}</b> 👋`;
+  const gb=document.getElementById('greetbar');if(gb)gb.innerHTML=`Hallo <b>${CFG.name||'Team'}</b> 👋`;
   document.getElementById('kwLabel').textContent='· KW '+cw;
   document.getElementById('yearLabel').textContent='· '+CFG.jahr;
 
